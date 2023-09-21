@@ -1,9 +1,9 @@
-import { useRef } from "react";
-import type { RefObject } from "react";
-import useRaf from "@rooks/use-raf";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import type { MotionValue } from "framer-motion";
-import { useWindowSize } from "~/hooks";
+import { useRef } from 'react';
+import type { RefObject } from 'react';
+import useRaf from '@rooks/use-raf';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import type { MotionValue } from 'framer-motion';
+import { useWindowSize } from '~/hooks';
 
 // Hover effect is adopted from https://github.com/PuruVJ/macos-web/blob/main/src/components/dock/DockItem.tsx
 
@@ -93,7 +93,7 @@ export default function DockItem({
   return (
     <li
       id={`dock-${id}`}
-      onClick={desktop || id === "launchpad" ? () => openApp(id) : () => {}}
+      onClick={desktop || id === 'launchpad' ? () => openApp(id) : () => {}}
       className="hstack flex-col justify-end mb-1 transition duration-150 ease-in origin-bottom"
     >
       <p className="tooltip absolute px-3 py-1 rounded-md text-sm c-text-black c-bg-300/80">
@@ -108,7 +108,7 @@ export default function DockItem({
             alt={title}
             title={title}
             draggable={false}
-            style={winWidth < 640 ? {} : { width, willChange: "width" }}
+            style={winWidth < 640 ? {} : { width, willChange: 'width' }}
           />
         </a>
       ) : (
@@ -119,10 +119,10 @@ export default function DockItem({
           alt={title}
           title={title}
           draggable={false}
-          style={winWidth < 640 ? {} : { width, willChange: "width" }}
+          style={winWidth < 640 ? {} : { width, willChange: 'width' }}
         />
       )}
-      <div className={`h-1 w-1 m-0 rounded-full c-bg-800 ${isOpen ? "" : "invisible"}`} />
+      <div className={`h-1 w-1 m-0 rounded-full c-bg-800 ${isOpen ? '' : 'invisible'}`} />
     </li>
   );
 }

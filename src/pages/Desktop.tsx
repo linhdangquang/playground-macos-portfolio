@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
-import type { RefObject } from "react";
+import { useState, useEffect } from 'react';
+import type { RefObject } from 'react';
 
-import TopBar from "~/components/menus/TopBar";
-import Dock from "~/components/dock/Dock";
-import Launchpad from "~/components/Launchpad";
-import Window from "~/components/Window";
-import Spotlight from "~/components/Spotlight";
-import { apps, wallpapers } from "~/configs";
-import { useStore } from "~/stores";
-import { minMarginY } from "~/utils";
-import type { MacActions } from "~/types";
+import TopBar from '~/components/menus/TopBar';
+import Dock from '~/components/dock/Dock';
+import Launchpad from '~/components/Launchpad';
+import Window from '~/components/Window';
+import Spotlight from '~/components/Spotlight';
+import { apps, wallpapers } from '~/configs';
+import { useStore } from '~/stores';
+import { minMarginY } from '~/utils';
+import type { MacActions } from '~/types';
 
 interface DesktopState {
   showApps: {
@@ -39,7 +39,7 @@ export default function Desktop(props: MacActions) {
     minApps: {},
     maxZ: 2,
     showLaunchpad: false,
-    currentTitle: "Finder",
+    currentTitle: 'Finder',
     hideDockAndTopbar: false,
     spotlight: false
   } as DesktopState);
@@ -87,11 +87,11 @@ export default function Desktop(props: MacActions) {
   const toggleLaunchpad = (target: boolean): void => {
     const r = document.querySelector(`#launchpad`) as HTMLElement;
     if (target) {
-      r.style.transform = "scale(1)";
-      r.style.transition = "ease-in 0.2s";
+      r.style.transform = 'scale(1)';
+      r.style.transition = 'ease-in 0.2s';
     } else {
-      r.style.transform = "scale(1.1)";
-      r.style.transition = "ease-out 0.2s";
+      r.style.transform = 'scale(1.1)';
+      r.style.transition = 'ease-out 0.2s';
     }
 
     setState({ ...state, showLaunchpad: target });
@@ -105,14 +105,14 @@ export default function Desktop(props: MacActions) {
     const r = document.querySelector(`#window-${id}`) as HTMLElement;
     const rect = r.getBoundingClientRect();
     r.style.setProperty(
-      "--window-transform-x",
+      '--window-transform-x',
       // "+ window.innerWidth" because of the boundary for windows
-      (window.innerWidth + rect.x).toFixed(1).toString() + "px"
+      (window.innerWidth + rect.x).toFixed(1).toString() + 'px'
     );
     r.style.setProperty(
-      "--window-transform-y",
+      '--window-transform-y',
       // "- minMarginY" because of the boundary for windows
-      (rect.y - minMarginY).toFixed(1).toString() + "px"
+      (rect.y - minMarginY).toFixed(1).toString() + 'px'
     );
   };
 
@@ -152,7 +152,7 @@ export default function Desktop(props: MacActions) {
 
     // translate the window to that position
     r.style.transform = `translate(${posX}px, ${posY}px) scale(0.2)`;
-    r.style.transition = "ease-out 0.3s";
+    r.style.transition = 'ease-out 0.3s';
 
     // add it to the minimized app list
     setAppMin(id, true);
@@ -201,9 +201,9 @@ export default function Desktop(props: MacActions) {
       // move to window's last position
       const r = document.querySelector(`#window-${id}`) as HTMLElement;
       r.style.transform = `translate(${r.style.getPropertyValue(
-        "--window-transform-x"
-      )}, ${r.style.getPropertyValue("--window-transform-y")}) scale(1)`;
-      r.style.transition = "ease-in 0.3s";
+        '--window-transform-x'
+      )}, ${r.style.getPropertyValue('--window-transform-y')}) scale(1)`;
+      r.style.transition = 'ease-in 0.3s';
       // remove it from the minimized app list
       minApps[id] = false;
       setState({ ...state, minApps });

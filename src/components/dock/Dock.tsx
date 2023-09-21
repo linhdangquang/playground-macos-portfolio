@@ -1,7 +1,7 @@
-import { useMotionValue } from "framer-motion";
-import { apps } from "~/configs";
-import { useStore } from "~/stores";
-import DockItem from "./DockItem";
+import { useMotionValue } from 'framer-motion';
+import { apps } from '~/configs';
+import { useStore } from '~/stores';
+import DockItem from './DockItem';
 
 interface DockProps {
   open: (id: string) => void;
@@ -26,7 +26,7 @@ export default function Dock({
   }));
 
   const openApp = (id: string) => {
-    if (id === "launchpad") toggleLaunchpad(!showLaunchpad);
+    if (id === 'launchpad') toggleLaunchpad(!showLaunchpad);
     else {
       toggleLaunchpad(false);
       open(id);
@@ -38,7 +38,7 @@ export default function Dock({
   return (
     <div
       className={`dock w-full sm:w-max fixed left-0 right-0 mx-auto bottom-1 ${
-        hide ? "z-0" : "z-50"
+        hide ? 'z-0' : 'z-50'
       } overflow-x-scroll sm:overflow-x-visible`}
     >
       <ul

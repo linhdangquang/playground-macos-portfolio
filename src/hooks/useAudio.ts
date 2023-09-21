@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 export interface HTMLAudioState {
   volume: number;
@@ -60,9 +60,9 @@ export function useAudio(props: HTMLAudioProps) {
       if (props.autoReplay) controls.play();
     };
 
-    element.addEventListener("ended", handler);
+    element.addEventListener('ended', handler);
     return () => {
-      element.removeEventListener("ended", handler);
+      element.removeEventListener('ended', handler);
     };
   }, [props.autoReplay]);
 

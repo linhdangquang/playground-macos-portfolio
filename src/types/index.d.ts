@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export interface MacActions {
   setLogin: (value: boolean | ((prevVar: boolean) => boolean)) => void;
@@ -19,4 +19,4 @@ export {
   WebsitesData,
   SiteSectionData,
   SiteData
-} from "./configs";
+} from './configs';

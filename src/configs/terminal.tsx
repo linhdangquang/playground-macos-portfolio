@@ -1,45 +1,45 @@
-import type { TerminalData } from "~/types";
+import type { TerminalData } from '~/types';
 
 const terminal: TerminalData[] = [
   {
-    id: "about",
-    title: "about",
-    type: "folder",
+    id: 'about',
+    title: 'about',
+    type: 'folder',
     children: [
       {
-        id: "about-bio",
-        title: "bio.txt",
-        type: "file",
+        id: 'about-bio',
+        title: 'bio.txt',
+        type: 'file',
         content: (
           <div className="py-1">
             <div>
-              Hi, this is Xiaohan Zou. I received my master's degree in Computer Science
-              at Boston University and bachelor's degree in Software Engineering at Tongji
-              University.
+              Hi, this is Linh DQ from Vietnam. I'm a software engineer, I'm try to learn
+              more about web development and machine learning. I'm also interested in
+              UI/UX design.
             </div>
           </div>
         )
       },
       {
-        id: "about-interests",
-        title: "interests.txt",
-        type: "file",
-        content: "Machine Learning / Computer Vision / Vision-Language Learning"
+        id: 'about-interests',
+        title: 'interests.txt',
+        type: 'file',
+        content: 'Machine Learning / Computer Vision / Vision-Language Learning'
       },
       {
-        id: "about-who-cares",
-        title: "who-cares.txt",
-        type: "file",
+        id: 'about-who-cares',
+        title: 'who-cares.txt',
+        type: 'file',
         content: "I'm a incoming Ph.D. student lol."
       },
       {
-        id: "about-contact",
-        title: "contact.txt",
-        type: "file",
+        id: 'about-contact',
+        title: 'contact.txt',
+        type: 'file',
         content: (
           <ul className="list-disc ml-6">
             <li>
-              Email:{" "}
+              Email:{' '}
               <a
                 className="text-blue-300"
                 href="mailto:renovamenzxh@gmail.com"
@@ -50,7 +50,7 @@ const terminal: TerminalData[] = [
               </a>
             </li>
             <li>
-              Github:{" "}
+              Github:{' '}
               <a
                 className="text-blue-300"
                 href="https://github.com/Renovamen"
@@ -71,18 +71,18 @@ const terminal: TerminalData[] = [
               </a>
             </li>
             <li>
-              Linkedin:{" "}
+              Linkedin:{' '}
               <a
                 className="text-blue-300"
-                href="https://www.linkedin.com/in/xiaohan-zou"
+                href="https://www.linkedin.com/in/linhdangquang"
                 target="_blank"
                 rel="noreferrer"
               >
-                xiaohan-zou
+                linhdangquang
               </a>
             </li>
             <li>
-              Personal Website:{" "}
+              Personal Website:{' '}
               <a
                 className="text-blue-300"
                 href="https://zxh.io"
@@ -93,7 +93,7 @@ const terminal: TerminalData[] = [
               </a>
             </li>
             <li>
-              知乎:{" "}
+              知乎:{' '}
               <a
                 className="text-blue-300"
                 href="https://www.zhihu.com/people/chao-neng-gui-su"
@@ -109,21 +109,21 @@ const terminal: TerminalData[] = [
     ]
   },
   {
-    id: "about-dream",
-    title: "my-dream.cpp",
-    type: "file",
+    id: 'about-dream',
+    title: 'my-dream.cpp',
+    type: 'file',
     content: (
       <div className="py-1">
         <div>
           <span className="text-yellow-400">while</span>(
-          <span className="text-blue-400">sleeping</span>) <span>{"{"}</span>
+          <span className="text-blue-400">sleeping</span>) <span>{'{'}</span>
         </div>
         <div>
           <span className="text-blue-400 ml-9">money</span>
           <span className="text-yellow-400">++</span>;
         </div>
         <div>
-          <span>{"}"}</span>
+          <span>{'}'}</span>
         </div>
       </div>
     )

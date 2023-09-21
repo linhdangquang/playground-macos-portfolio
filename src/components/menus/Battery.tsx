@@ -1,4 +1,4 @@
-import { useBattery } from "~/hooks";
+import { useBattery } from '~/hooks';
 
 export default function Battery() {
   const batteryState = useBattery();
@@ -8,11 +8,11 @@ export default function Battery() {
   };
 
   const color = (): string => {
-    if (batteryState.charging) return "bg-green-400";
+    if (batteryState.charging) return 'bg-green-400';
 
-    if (batteryState.level < 0.2) return "bg-red-500";
-    else if (batteryState.level < 0.5) return "bg-yellow-500";
-    else return "bg-white";
+    if (batteryState.level < 0.2) return 'bg-red-500';
+    else if (batteryState.level < 0.5) return 'bg-yellow-500';
+    else return 'bg-white';
   };
 
   return (

@@ -1,16 +1,16 @@
-import React, { forwardRef, useState, useEffect, useRef } from "react";
-import type { RefObject, ReactNode } from "react";
-import format from "date-fns/format";
+import React, { forwardRef, useState, useEffect, useRef } from 'react';
+import type { RefObject, ReactNode } from 'react';
+import format from 'date-fns/format';
 
-import AppleMenu from "./AppleMenu";
-import WifiMenu from "./WifiMenu";
-import Battery from "./Battery";
-import ControlCenterMenu from "./ControlCenterMenu";
-import { isFullScreen } from "~/utils";
-import { useStore } from "~/stores";
-import { music } from "~/configs";
-import { useAudio, useWindowSize, useInterval } from "~/hooks";
-import type { MacActions } from "~/types";
+import AppleMenu from './AppleMenu';
+import WifiMenu from './WifiMenu';
+import Battery from './Battery';
+import ControlCenterMenu from './ControlCenterMenu';
+import { isFullScreen } from '~/utils';
+import { useStore } from '~/stores';
+import { music } from '~/configs';
+import { useAudio, useWindowSize, useInterval } from '~/hooks';
+import type { MacActions } from '~/types';
 
 // ------- import icons -------
 interface TopBarItemProps {
@@ -23,15 +23,15 @@ interface TopBarItemProps {
 }
 
 const TopBarItem = forwardRef((props: TopBarItemProps, ref: any) => {
-  const hide = props.hideOnMobile ? "hidden sm:inline-flex" : "inline-flex";
+  const hide = props.hideOnMobile ? 'hidden sm:inline-flex' : 'inline-flex';
   const hover = props.forceHover
-    ? "bg-gray-100/30 dark:bg-gray-400/40"
-    : "hover:(bg-gray-100/30 dark:bg-gray-400/40)";
+    ? 'bg-gray-100/30 dark:bg-gray-400/40'
+    : 'hover:(bg-gray-100/30 dark:bg-gray-400/40)';
   return (
     <div
       ref={ref}
       className={`hstack space-x-1 h-6 px-1 cursor-default rounded ${hide} ${hover} ${
-        props.className || ""
+        props.className || ''
       }`}
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
@@ -40,7 +40,7 @@ const TopBarItem = forwardRef((props: TopBarItemProps, ref: any) => {
     </div>
   );
 });
-TopBarItem.displayName = "TopBarItem";
+TopBarItem.displayName = 'TopBarItem';
 
 const CCMIcon = ({ size }: { size: number }) => {
   return (
@@ -170,7 +170,7 @@ const TopBar = (props: TopBarProps) => {
   return (
     <div
       className={`w-full h-8 px-2 fixed top-0 hstack justify-between ${
-        props.hide ? "z-0" : "z-20"
+        props.hide ? 'z-0' : 'z-20'
       } text-sm text-white bg-gray-700/10 backdrop-blur-2xl shadow transition`}
     >
       <div className="hstack space-x-1">
@@ -249,8 +249,8 @@ const TopBar = (props: TopBarProps) => {
         )}
 
         <TopBarItem>
-          <span>{format(state.date, "eee MMM d")}</span>
-          <span>{format(state.date, "h:mm aa")}</span>
+          <span>{format(state.date, 'eee MMM d')}</span>
+          <span>{format(state.date, 'h:mm aa')}</span>
         </TopBarItem>
       </div>
     </div>

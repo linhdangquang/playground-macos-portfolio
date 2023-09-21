@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import { useStore } from "~/stores";
-import { wallpapers, user } from "~/configs";
-import type { MacActions } from "~/types";
+import React, { useState } from 'react';
+import { useStore } from '~/stores';
+import { wallpapers, user } from '~/configs';
+import type { MacActions } from '~/types';
 
 export default function Login(props: MacActions) {
-  const [password, setPassword] = useState("");
-  const [sign, setSign] = useState("Click to enter");
+  const [password, setPassword] = useState('');
+  const [sign, setSign] = useState('Click to enter');
   const dark = useStore((state) => state.dark);
 
   const keyPress = (e: React.KeyboardEvent) => {
     const keyCode = e.key;
-    if (keyCode === "Enter") loginHandle();
+    if (keyCode === 'Enter') loginHandle();
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -18,12 +18,12 @@ export default function Login(props: MacActions) {
   };
 
   const loginHandle = () => {
-    if (user.password === "" || user.password === password) {
+    if (user.password === '' || user.password === password) {
       // not set password or password correct
       props.setLogin(true);
-    } else if (password !== "") {
+    } else if (password !== '') {
       // password not null and incorrect
-      setSign("Incorrect password");
+      setSign('Incorrect password');
     }
   };
 

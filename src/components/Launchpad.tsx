@@ -1,22 +1,22 @@
-import { useState } from "react";
-import { wallpapers, launchpadApps } from "~/configs";
-import { useStore } from "~/stores";
+import { useState } from 'react';
+import { wallpapers, launchpadApps } from '~/configs';
+import { useStore } from '~/stores';
 
 interface LaunchpadProps {
   show: boolean;
   toggleLaunchpad: (target: boolean) => void;
 }
 
-const placeholderText = "Search";
+const placeholderText = 'Search';
 
 export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
   const dark = useStore((state) => state.dark);
 
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState('');
   const [focus, setFocus] = useState(false);
 
   const search = () => {
-    if (searchText === "") return launchpadApps;
+    if (searchText === '') return launchpadApps;
     const text = searchText.toLowerCase();
     const list = launchpadApps.filter((item) => {
       return (
@@ -26,7 +26,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
     return list;
   };
 
-  const close = show ? "" : "opacity-0 invisible transition-opacity duration-200";
+  const close = show ? '' : 'opacity-0 invisible transition-opacity duration-200';
 
   return (
     <div
@@ -47,7 +47,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
         >
           <div
             className={`${
-              focus ? "w-6 duration-200" : "w-26 delay-250"
+              focus ? 'w-6 duration-200' : 'w-26 delay-250'
             } hstack justify-end`}
           >
             <span className="i-bx:search ml-1 text-white" />

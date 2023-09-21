@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
-import type { RefObject } from "react";
+import { useEffect, useRef } from 'react';
+import type { RefObject } from 'react';
 
-const defaultEvents = ["mousedown", "touchstart"];
+const defaultEvents = ['mousedown', 'touchstart'];
 
 export function useClickOutside(
   ref: RefObject<HTMLElement | null>,

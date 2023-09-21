@@ -1,7 +1,7 @@
-import { useRef, useState } from "react";
-import Webcam from "react-webcam";
-import format from "date-fns/format";
-import { useStore } from "~/stores";
+import { useRef, useState } from 'react';
+import Webcam from 'react-webcam';
+import format from 'date-fns/format';
+import { useStore } from '~/stores';
 
 interface SidebarProps {
   state: FaceTimeState;
@@ -28,7 +28,7 @@ const SidebarItem = ({ date, active }: SidebarItemProps) => {
 
   return (
     <div
-      className={`hstack h-16 px-2.5 rounded-md space-x-2 ${active && "bg-[#508041]"}`}
+      className={`hstack h-16 px-2.5 rounded-md space-x-2 ${active && 'bg-[#508041]'}`}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
@@ -42,13 +42,13 @@ const SidebarItem = ({ date, active }: SidebarItemProps) => {
         </div>
         <div className="hstack space-x-1 text-white/60">
           <span className="i-ion:videocam" />
-          <span>FaceTime · {format(Number(date), "hh:mm:ss")}</span>
+          <span>FaceTime · {format(Number(date), 'hh:mm:ss')}</span>
         </div>
       </div>
 
       <span
         className="i-maki:cross absolute right-2.5 duration-150"
-        text={`lg white/60 hover:white ${!hover && "transparent"}`}
+        text={`lg white/60 hover:white ${!hover && 'transparent'}`}
         onClick={(e) => {
           e.stopPropagation();
           deleteImage(date);
@@ -71,18 +71,18 @@ const Sidebar = ({ state, onTake, onSave, onSelect }: SidebarProps) => {
           onClick={onTake}
         >
           <span className="i-ion:ios-videocam text-base" />
-          <span>{state.curImage ? "Retake" : "Take a Picture"}</span>
+          <span>{state.curImage ? 'Retake' : 'Take a Picture'}</span>
         </button>
         <button
           className={`flex-center space-x-1 w-full py-1 text-white rounded-md bg-stone-500 ${
-            !state.canSave && "opacity-60 cursor-not-allowed"
+            !state.canSave && 'opacity-60 cursor-not-allowed'
           }`}
           disabled={!state.canSave}
           onClick={onSave}
         >
           <span
             className={`${
-              state.canSave ? "i-mdi:content-save" : "i-mdi:content-save-off"
+              state.canSave ? 'i-mdi:content-save' : 'i-mdi:content-save-off'
             } text-base`}
           />
           <span>Save Picture</span>
@@ -123,7 +123,7 @@ const FaceTime = () => {
         state={state}
         onTake={() => {
           if (!state.curImage) {
-            const src = webcamRef.current?.getScreenshot() || "";
+            const src = webcamRef.current?.getScreenshot() || '';
             setState({ curImage: src, canSave: true });
           } else setState({ curImage: null, canSave: false });
         }}
@@ -145,7 +145,7 @@ const FaceTime = () => {
             ref={webcamRef}
             screenshotFormat="image/jpeg"
             videoConstraints={{
-              facingMode: "user",
+              facingMode: 'user',
               aspectRatio: 1.7
             }}
           />

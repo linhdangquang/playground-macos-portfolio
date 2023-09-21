@@ -1,9 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
-import type { RefObject } from "react";
-import format from "date-fns/format";
-import { apps, launchpadApps } from "~/configs";
-import { useClickOutside } from "~/hooks";
-import type { LaunchpadData, AppsData } from "~/types";
+import React, { useRef, useState, useEffect } from 'react';
+import type { RefObject } from 'react';
+import format from 'date-fns/format';
+import { apps, launchpadApps } from '~/configs';
+import { useClickOutside } from '~/hooks';
+import type { LaunchpadData, AppsData } from '~/types';
 
 const allApps: { [key: string]: (LaunchpadData | AppsData)[] } = {
   app: apps,
@@ -19,7 +19,7 @@ const getRandom = (min: number, max: number): number => {
 const getRandomDate = (): string => {
   const timeStamp = new Date().getTime();
   const randomStamp = getRandom(0, timeStamp);
-  const date = format(randomStamp, "MM/dd/yyyy");
+  const date = format(randomStamp, 'MM/dd/yyyy');
   return date;
 };
 
@@ -39,18 +39,18 @@ export default function Spotlight({
   const spotlightRef = useRef<HTMLDivElement>(null);
 
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const [clickedID, setClickedID] = useState("");
+  const [clickedID, setClickedID] = useState('');
   const [doubleClicked, setDoubleClicked] = useState<boolean>(false);
 
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState('');
   const [curDetails, setCurDetails] = useState<any>(null);
 
   const [appIdList, setAppIdList] = useState<string[]>([]);
   const [appList, setAppList] = useState<JSX.Element | null>(null);
 
-  const textWhite = "text-white";
-  const textBlack = "c-text-black";
-  const textSelected = "bg-blue-500";
+  const textWhite = 'text-white';
+  const textBlack = 'c-text-black';
+  const textSelected = 'bg-blue-500';
 
   useClickOutside(spotlightRef, toggleSpotlight, [btnRef]);
 
@@ -81,7 +81,7 @@ export default function Spotlight({
   }, [doubleClicked]);
 
   const search = (type: string) => {
-    if (searchText === "") return [];
+    if (searchText === '') return [];
     const text = searchText.toLowerCase();
     const list = allApps[type].filter((item: LaunchpadData | AppsData) => {
       return (
@@ -101,9 +101,9 @@ export default function Spotlight({
   };
 
   const launchSelectedApp = (): void => {
-    if (curDetails.type === "app" && !curDetails.link) {
+    if (curDetails.type === 'app' && !curDetails.link) {
       const id = curDetails.id;
-      if (id === "launchpad") toggleLaunchpad(true);
+      if (id === 'launchpad') toggleLaunchpad(true);
       else openApp(id);
       toggleSpotlight();
     } else {
@@ -119,7 +119,7 @@ export default function Spotlight({
 
     for (const app of result) {
       const curIndex = startIndex + typeAppList.length;
-      const bg = curIndex === 0 ? textSelected : "bg-transparent";
+      const bg = curIndex === 0 ? textSelected : 'bg-transparent';
       const text = curIndex === 0 ? textWhite : textBlack;
 
       if (curIndex === 0) setCurrentDetailsWithType(app, type);
@@ -156,8 +156,8 @@ export default function Spotlight({
   };
 
   const updateAppList = (): void => {
-    const app = getTypeAppList("app", 0);
-    const portfolio = getTypeAppList("portfolio", app.appIdList.length);
+    const app = getTypeAppList('app', 0);
+    const portfolio = getTypeAppList('portfolio', app.appIdList.length);
 
     const newAppIdList = [...app.appIdList, ...portfolio.appIdList];
     // don't show app details when there is no associating app
@@ -193,7 +193,7 @@ export default function Spotlight({
   };
 
   const updateCurrentDetails = (): void => {
-    if (appIdList.length === 0 || searchText === "") {
+    if (appIdList.length === 0 || searchText === '') {
       setCurDetails(null);
       return;
     }
@@ -216,7 +216,7 @@ export default function Spotlight({
     const prev = document.querySelector(`#spotlight-${prevAppId}`) as HTMLElement;
     let classes = prev.className;
     classes = classes.replace(textWhite, textBlack);
-    classes = classes.replace(textSelected, "bg-transparent");
+    classes = classes.replace(textSelected, 'bg-transparent');
     prev.className = classes;
 
     // add highlight
@@ -224,7 +224,7 @@ export default function Spotlight({
     const cur = document.querySelector(`#spotlight-${curAppId}`) as HTMLElement;
     classes = cur.className;
     classes = classes.replace(textBlack, textWhite);
-    classes = classes.replace("bg-transparent", textSelected);
+    classes = classes.replace('bg-transparent', textSelected);
     cur.className = classes;
   };
 
@@ -233,17 +233,17 @@ export default function Spotlight({
     const numApps = appIdList.length;
 
     // ----------- select next app -----------
-    if (keyCode === "ArrowDown" && selectedIndex < numApps - 1) {
+    if (keyCode === 'ArrowDown' && selectedIndex < numApps - 1) {
       updateHighlight(selectedIndex, selectedIndex + 1);
       setSelectedIndex(selectedIndex + 1);
     }
     // ----------- select previous app -----------
-    else if (keyCode === "ArrowUp" && selectedIndex > 0) {
+    else if (keyCode === 'ArrowUp' && selectedIndex > 0) {
       updateHighlight(selectedIndex, selectedIndex - 1);
       setSelectedIndex(selectedIndex - 1);
     }
     // ----------- launch app -----------
-    else if (keyCode === "Enter") {
+    else if (keyCode === 'Enter') {
       if (!curDetails) return;
       launchSelectedApp();
     }
@@ -259,7 +259,7 @@ export default function Spotlight({
   };
 
   const focusOnInput = (): void => {
-    const input = document.querySelector("#spotlight-input") as HTMLElement;
+    const input = document.querySelector('#spotlight-input') as HTMLElement;
     input.focus();
   };
 
@@ -277,7 +277,7 @@ export default function Spotlight({
         <input
           id="spotlight-input"
           className={`col-start-2 col-span-7 ${
-            curDetails ? "sm:col-span-9" : "sm:col-span-10"
+            curDetails ? 'sm:col-span-9' : 'sm:col-span-10'
           } c-text-black bg-transparent no-outline px-1`}
           text="xl sm:2xl"
           placeholder="Spotlight Search"
@@ -296,7 +296,7 @@ export default function Spotlight({
           </div>
         )}
       </div>
-      {searchText !== "" && (
+      {searchText !== '' && (
         <div className="h-85 bg-transparent flex flex-row border-t menu-border">
           <div className="flex-none w-32 sm:w-72 px-2.5 border-r menu-border overflow-y-scroll">
             {appList}
@@ -328,7 +328,7 @@ export default function Spotlight({
                     <div>Last opened</div>
                   </div>
                   <div className="flex-grow flex-col vstack pl-2 c-text-black">
-                    <div>{curDetails.type === "app" ? "Application" : "Portfolio"}</div>
+                    <div>{curDetails.type === 'app' ? 'Application' : 'Portfolio'}</div>
                     <div>{`${getRandom(0, 999)} G`}</div>
                     <div>{getRandomDate()}</div>
                     <div>{getRandomDate()}</div>

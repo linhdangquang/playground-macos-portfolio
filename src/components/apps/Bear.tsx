@@ -1,13 +1,13 @@
-import { useState, useEffect, useCallback } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula, prism } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { useStore } from "~/stores";
-import bear from "~/configs/bear";
-import type { BearMdData } from "~/types";
+import { useState, useEffect, useCallback } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dracula, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { useStore } from '~/stores';
+import bear from '~/configs/bear';
+import type { BearMdData } from '~/types';
 
 interface ContentProps {
   contentID: string;
@@ -41,7 +41,7 @@ const Highlighter = (dark: boolean): any => {
 
   return {
     code({ node, inline, className, children, ...props }: codeProps) {
-      const match = /language-(\w+)/.exec(className || "");
+      const match = /language-(\w+)/.exec(className || '');
       return !inline && match ? (
         <SyntaxHighlighter
           style={dark ? dracula : prism}
@@ -49,7 +49,7 @@ const Highlighter = (dark: boolean): any => {
           PreTag="div"
           {...props}
         >
-          {String(children).replace(/\n$/, "")}
+          {String(children).replace(/\n$/, '')}
         </SyntaxHighlighter>
       ) : (
         <code className={className}>{children}</code>
@@ -70,8 +70,8 @@ const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
           <li
             key={`bear-sidebar-${item.id}`}
             className={`pl-6 h-8 hstack cursor-default ${
-              cur === index ? "bg-red-500" : "bg-transparent"
-            } ${cur === index ? "" : "hover:bg-gray-600"}`}
+              cur === index ? 'bg-red-500' : 'bg-transparent'
+            } ${cur === index ? '' : 'hover:bg-gray-600'}`}
             onClick={() => setMidBar(item.md, index)}
           >
             <span className={item.icon} />
@@ -95,8 +95,8 @@ const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
             key={`bear-midbar-${item.id}`}
             className={`h-24 flex flex-col cursor-default border-l-2 ${
               cur === index
-                ? "border-red-500 bg-white dark:bg-gray-900"
-                : "border-transparent bg-transparent"
+                ? 'border-red-500 bg-white dark:bg-gray-900'
+                : 'border-transparent bg-transparent'
             } hover:(bg-white dark:bg-gray-900)`}
             onClick={() => setContent(item.id, item.file, index)}
           >
@@ -129,12 +129,12 @@ const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
 };
 
 const getRepoURL = (url: string) => {
-  return url.slice(0, -10) + "/";
+  return url.slice(0, -10) + '/';
 };
 
 const fixImageURL = (text: string, contentURL: string): string => {
-  text = text.replace(/&nbsp;/g, "");
-  if (contentURL.indexOf("raw.githubusercontent.com") !== -1) {
+  text = text.replace(/&nbsp;/g, '');
+  if (contentURL.indexOf('raw.githubusercontent.com') !== -1) {
     const repoURL = getRepoURL(contentURL);
 
     const imgReg = /!\[(.*?)\]\((.*?)\)/;
@@ -145,7 +145,7 @@ const fixImageURL = (text: string, contentURL: string): string => {
     if (imgList) {
       for (const img of imgList) {
         const imgURL = (img.match(imgReg) as Array<string>)[2];
-        if (imgURL.indexOf("http") !== -1) continue;
+        if (imgURL.indexOf('http') !== -1) continue;
         const newImgURL = repoURL + imgURL;
         text = text.replace(imgURL, newImgURL);
       }

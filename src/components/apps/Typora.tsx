@@ -1,10 +1,10 @@
-import { Editor, rootCtx, defaultValueCtx } from "@milkdown/core";
-import { Milkdown, MilkdownProvider, useEditor } from "@milkdown/react";
-import { commonmark } from "@milkdown/preset-commonmark";
-import { gfm } from "@milkdown/preset-gfm";
-import { history } from "@milkdown/plugin-history";
-import { listener, listenerCtx } from "@milkdown/plugin-listener";
-import { useStore } from "~/stores";
+import { Editor, rootCtx, defaultValueCtx } from '@milkdown/core';
+import { Milkdown, MilkdownProvider, useEditor } from '@milkdown/react';
+import { commonmark } from '@milkdown/preset-commonmark';
+import { gfm } from '@milkdown/preset-gfm';
+import { history } from '@milkdown/plugin-history';
+import { listener, listenerCtx } from '@milkdown/plugin-listener';
+import { useStore } from '~/stores';
 
 const MilkdownEditor = () => {
   const { typoraMd, setTyporaMd } = useStore((state) => ({
@@ -29,7 +29,7 @@ const MilkdownEditor = () => {
           .markdownUpdated((_, markdown) => setTyporaMd(markdown));
 
         root.className =
-          "typora bg-white dark:bg-gray-800 c-text-700 h-full overflow-y-scroll";
+          'typora bg-white dark:bg-gray-800 c-text-700 h-full overflow-y-scroll';
       })
       .use(listener)
       .use(commonmark)

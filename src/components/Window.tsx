@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Rnd } from "react-rnd";
-import { useWindowSize } from "~/hooks";
-import { useStore } from "~/stores";
-import { minMarginX, minMarginY, appBarHeight } from "~/utils";
+import React, { useState, useEffect } from 'react';
+import { Rnd } from 'react-rnd';
+import { useWindowSize } from '~/hooks';
+import { useStore } from '~/stores';
+import { minMarginX, minMarginY, appBarHeight } from '~/utils';
 
 const FullIcon = ({ size }: { size: number }) => {
   return (
@@ -88,16 +88,16 @@ const TrafficLights = ({ id, close, aspectRatio, max, setMax, setMin }: TrafficP
         <span className="icon i-gg:close text-[9px]" />
       </button>
       <button
-        className={`window-btn ${max ? "c-bg-400" : "bg-yellow-500 dark:bg-yellow-400"}`}
+        className={`window-btn ${max ? 'c-bg-400' : 'bg-yellow-500 dark:bg-yellow-400'}`}
         onClick={() => setMin(id)}
         onTouchEnd={() => setMin(id)}
         disabled={max}
       >
-        <span className={`icon i-fe:minus text-[10px] ${max ? "invisible" : ""}`} />
+        <span className={`icon i-fe:minus text-[10px] ${max ? 'invisible' : ''}`} />
       </button>
       <button
         className={`window-btn ${
-          disableMax ? "c-bg-400" : "bg-green-500 dark:bg-green-400"
+          disableMax ? 'c-bg-400' : 'bg-green-500 dark:bg-green-400'
         }`}
         onClick={() => setMax(id)}
         onTouchEnd={() => setMax(id)}
@@ -133,11 +133,11 @@ const Window = (props: WindowProps) => {
     });
   }, [winWidth, winHeight]);
 
-  const round = props.max ? "rounded-none" : "rounded-lg";
+  const round = props.max ? 'rounded-none' : 'rounded-lg';
   const minimized = props.min
-    ? "opacity-0 invisible transition-opacity duration-300"
-    : "";
-  const border = props.max ? "" : "border border-gray-500/30";
+    ? 'opacity-0 invisible transition-opacity duration-300'
+    : '';
+  const border = props.max ? '' : 'border border-gray-500/30';
   const width = props.max ? winWidth : state.width;
   const height = props.max ? winHeight : state.height;
   const disableMax = props.aspectRatio !== undefined;

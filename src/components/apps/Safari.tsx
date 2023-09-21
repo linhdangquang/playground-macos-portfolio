@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { websites, wallpapers } from "~/configs";
-import { checkURL } from "~/utils";
-import { useStore } from "~/stores";
-import type { SiteSectionData, SiteData } from "~/types";
+import React, { useState } from 'react';
+import { websites, wallpapers } from '~/configs';
+import { checkURL } from '~/utils';
+import { useStore } from '~/stores';
+import type { SiteSectionData, SiteData } from '~/types';
 
 interface SafariState {
   goURL: string;
@@ -23,7 +23,7 @@ interface NavSectionProps extends NavProps {
 }
 
 const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
-  const grid = width < 640 ? "grid-cols-4" : "grid-cols-9";
+  const grid = width < 640 ? 'grid-cols-4' : 'grid-cols-9';
 
   return (
     <div className="mx-auto w-full max-w-screen-md" p="t-8 x-4">
@@ -76,8 +76,8 @@ const numTracker = Math.floor(Math.random() * 99 + 1);
 const NavPage = ({ width, setGoURL }: NavProps) => {
   const dark = useStore((state) => state.dark);
 
-  const grid = width < 640 ? "grid-cols-4" : "grid-cols-8";
-  const span = width < 640 ? "col-span-3" : "col-span-7";
+  const grid = width < 640 ? 'grid-cols-4' : 'grid-cols-8';
+  const span = width < 640 ? 'col-span-3' : 'col-span-7';
 
   return (
     <div
@@ -142,17 +142,17 @@ const NoInternetPage = () => {
 const Safari = ({ width }: SafariProps) => {
   const wifi = useStore((state) => state.wifi);
   const [state, setState] = useState<SafariState>({
-    goURL: "",
-    currentURL: ""
+    goURL: '',
+    currentURL: ''
   });
 
   const setGoURL = (url: string) => {
     const isValid = checkURL(url);
 
     if (isValid) {
-      if (url.substring(0, 7) !== "http://" && url.substring(0, 8) !== "https://")
+      if (url.substring(0, 7) !== 'http://' && url.substring(0, 8) !== 'https://')
         url = `https://${url}`;
-    } else if (url !== "") {
+    } else if (url !== '') {
       url = `https://www.bing.com/search?q=${url}`;
     }
 
@@ -164,12 +164,12 @@ const Safari = ({ width }: SafariProps) => {
 
   const pressURL = (e: React.KeyboardEvent) => {
     const keyCode = e.key;
-    if (keyCode === "Enter") setGoURL((e.target as HTMLInputElement).value);
+    if (keyCode === 'Enter') setGoURL((e.target as HTMLInputElement).value);
   };
 
-  const buttonColor = state.goURL === "" ? "c-text-400" : "c-text-700";
-  const grid = (width as number) < 640 ? "grid-cols-2" : "grid-cols-3";
-  const hideLast = (width as number) < 640 ? "hidden" : "flex";
+  const buttonColor = state.goURL === '' ? 'c-text-400' : 'c-text-700';
+  const grid = (width as number) < 640 ? 'grid-cols-2' : 'grid-cols-3';
+  const hideLast = (width as number) < 640 ? 'hidden' : 'flex';
 
   return (
     <div className="w-full h-full">
@@ -178,7 +178,7 @@ const Safari = ({ width }: SafariProps) => {
         <div className="flex px-2">
           <button
             className={`safari-btn w-7 ${buttonColor}`}
-            onClick={() => setGoURL("")}
+            onClick={() => setGoURL('')}
           >
             <span className="i-jam:chevron-left text-xl" />
           </button>
@@ -215,11 +215,11 @@ const Safari = ({ width }: SafariProps) => {
 
       {/* browser content */}
       {wifi ? (
-        state.goURL === "" ? (
+        state.goURL === '' ? (
           <NavPage setGoURL={setGoURL} width={width as number} />
         ) : (
           <iframe
-            title={"Safari clone browser"}
+            title={'Safari clone browser'}
             src={state.goURL}
             className="safari-content w-full bg-white"
           />

@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useInterval } from "~/hooks";
+import { useState, useEffect } from 'react';
+import { useInterval } from '~/hooks';
 
 interface BootProps {
   restart: boolean;
@@ -59,7 +59,7 @@ export default function Boot({ restart, sleep, setBooting }: BootProps) {
           m="t-16 sm:t-20 x-auto"
           text="sm gray-200 center"
         >
-          Click to {sleep ? "wake up" : "boot"}
+          Click to {sleep ? 'wake up' : 'boot'}
         </div>
       )}
     </div>

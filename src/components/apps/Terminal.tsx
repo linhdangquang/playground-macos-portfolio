@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { terminal } from "~/configs";
-import type { TerminalData } from "~/types";
+import React, { Component } from 'react';
+import { terminal } from '~/configs';
+import type { TerminalData } from '~/types';
 
-const emojis = ["\\(o_o)/", "(˚Δ˚)b", "(^-^*)", "(╯‵□′)╯", "\\(°ˊДˋ°)/", "╰(‵□′)╯"];
+const emojis = ['\\(o_o)/', '(˚Δ˚)b', '(^-^*)', '(╯‵□′)╯', '\\(°ˊДˋ°)/', '╰(‵□′)╯'];
 
 const getEmoji = () => {
   return emojis[Math.floor(Math.random() * emojis.length)];
 };
 
 const characters =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789富强民主文明和谐自由平等公正法治爱国敬业诚信友善";
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789富强民主文明和谐自由平等公正法治爱国敬业诚信友善';
 
 interface HowDareProps {
   setRMRF: (value: boolean) => void;
@@ -30,12 +30,12 @@ class HowDare extends Component<HowDareProps> {
   private drops = [] as number[];
 
   componentDidMount() {
-    const container = document.querySelector("#how-dare-container") as HTMLElement;
+    const container = document.querySelector('#how-dare-container') as HTMLElement;
 
-    this.canvas = document.querySelector("#how-dare") as HTMLCanvasElement;
+    this.canvas = document.querySelector('#how-dare') as HTMLCanvasElement;
     this.canvas.height = container.offsetHeight;
     this.canvas.width = container.offsetWidth;
-    this.ctx = this.canvas.getContext("2d");
+    this.ctx = this.canvas.getContext('2d');
 
     const columns = this.canvas.width / this.fontSize;
     this.drops = [];
@@ -53,10 +53,10 @@ class HowDare extends Component<HowDareProps> {
     this.ctx = this.ctx as CanvasRenderingContext2D;
     this.canvas = this.canvas as HTMLCanvasElement;
 
-    this.ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    this.ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.ctx.fillStyle = "#2e9244";
+    this.ctx.fillStyle = '#2e9244';
     this.ctx.font = `${this.fontSize}px arial`;
 
     for (let i = 0; i < this.drops.length; i++) {
@@ -123,8 +123,8 @@ export default class Terminal extends Component<{}, TerminalState> {
   }
 
   reset = (): void => {
-    const terminal = document.querySelector("#terminal-content") as HTMLElement;
-    terminal.innerHTML = "";
+    const terminal = document.querySelector('#terminal-content') as HTMLElement;
+    terminal.innerHTML = '';
   };
 
   addRow = (row: JSX.Element) => {
@@ -136,7 +136,7 @@ export default class Terminal extends Component<{}, TerminalState> {
   };
 
   getCurDirName = () => {
-    if (this.curDirPath.length === 0) return "~";
+    if (this.curDirPath.length === 0) return '~';
     else return this.curDirPath[this.curDirPath.length - 1];
   };
 
@@ -144,7 +144,7 @@ export default class Terminal extends Component<{}, TerminalState> {
     let children = terminal as any;
     for (const name of this.curDirPath) {
       children = children.find((item: TerminalData) => {
-        return item.title === name && item.type === "folder";
+        return item.title === name && item.type === 'folder';
       }).children;
     }
     return children;
@@ -152,14 +152,14 @@ export default class Terminal extends Component<{}, TerminalState> {
 
   // move into a specified folder
   cd = (args?: string): void => {
-    if (args === undefined || args === "~") {
+    if (args === undefined || args === '~') {
       // move to root
       this.curDirPath = [];
       this.curChildren = terminal;
-    } else if (args === ".") {
+    } else if (args === '.') {
       // stay in the current folder
       return;
-    } else if (args === "..") {
+    } else if (args === '..') {
       // move to parent folder
       if (this.curDirPath.length === 0) return;
       this.curDirPath.pop();
@@ -167,7 +167,7 @@ export default class Terminal extends Component<{}, TerminalState> {
     } else {
       // move to certain child folder
       const target = this.curChildren.find((item: TerminalData) => {
-        return item.title === args && item.type === "folder";
+        return item.title === args && item.type === 'folder';
       });
       if (target === undefined) {
         this.generateResultRow(
@@ -188,7 +188,7 @@ export default class Terminal extends Component<{}, TerminalState> {
       result.push(
         <span
           key={`terminal-result-ls-${this.curInputTimes}-${item.id}`}
-          className={`${item.type === "file" ? "text-white" : "text-purple-300"}`}
+          className={`${item.type === 'file' ? 'text-white' : 'text-purple-300'}`}
         >
           {item.title}
         </span>
@@ -203,7 +203,7 @@ export default class Terminal extends Component<{}, TerminalState> {
   // display content of a specified file
   cat = (args?: string): void => {
     const file = this.curChildren.find((item: TerminalData) => {
-      return item.title === args && item.type === "file";
+      return item.title === args && item.type === 'file';
     });
 
     if (file === undefined) {
@@ -226,12 +226,12 @@ export default class Terminal extends Component<{}, TerminalState> {
     const help = (
       <ul className="list-disc ml-6 pb-1.5">
         <li>
-          <span className="text-red-400">cat {"<file>"}</span> - See the content of{" "}
-          {"<file>"}
+          <span className="text-red-400">cat {'<file>'}</span> - See the content of{' '}
+          {'<file>'}
         </li>
         <li>
-          <span className="text-red-400">cd {"<dir>"}</span> - Move into
-          {" <dir>"}, "cd .." to move to the parent directory, "cd" or "cd ~" to return to
+          <span className="text-red-400">cd {'<dir>'}</span> - Move into
+          {' <dir>'}, "cd .." to move to the parent directory, "cd" or "cd ~" to return to
           root
         </li>
         <li>
@@ -260,9 +260,9 @@ export default class Terminal extends Component<{}, TerminalState> {
   };
 
   autoComplete = (text: string): string => {
-    if (text === "") return text;
+    if (text === '') return text;
 
-    const input = text.split(" ");
+    const input = text.split(' ');
     const cmd = input[0];
     const args = input[1];
 
@@ -273,12 +273,12 @@ export default class Terminal extends Component<{}, TerminalState> {
         return item.substring(0, cmd.length) === cmd;
       });
       if (guess !== undefined) result = guess;
-    } else if (cmd === "cd" || cmd === "cat") {
-      const type = cmd === "cd" ? "folder" : "file";
+    } else if (cmd === 'cd' || cmd === 'cat') {
+      const type = cmd === 'cd' ? 'folder' : 'file';
       const guess = this.curChildren.find((item: TerminalData) => {
         return item.type === type && item.title.substring(0, args.length) === args;
       });
-      if (guess !== undefined) result = cmd + " " + guess.title;
+      if (guess !== undefined) result = cmd + ' ' + guess.title;
     }
     return result;
   };
@@ -289,9 +289,9 @@ export default class Terminal extends Component<{}, TerminalState> {
       `#terminal-input-${this.curInputTimes}`
     ) as HTMLInputElement;
     const inputText = inputElement.value.trim();
-    const input = inputText.split(" ");
+    const input = inputText.split(' ');
 
-    if (keyCode === "Enter") {
+    if (keyCode === 'Enter') {
       // ----------- run command -----------
       this.history.push(inputText);
 
@@ -299,9 +299,9 @@ export default class Terminal extends Component<{}, TerminalState> {
       const args = input[1];
 
       // we can't edit the past input
-      inputElement.setAttribute("readonly", "true");
+      inputElement.setAttribute('readonly', 'true');
 
-      if (inputText.substring(0, 6) === "rm -rf") this.setState({ rmrf: true });
+      if (inputText.substring(0, 6) === 'rm -rf') this.setState({ rmrf: true });
       else if (cmd && Object.keys(this.commands).includes(cmd)) {
         this.commands[cmd](args);
       } else {
@@ -317,24 +317,24 @@ export default class Terminal extends Component<{}, TerminalState> {
       // generate new input row
       this.curInputTimes += 1;
       this.generateInputRow(this.curInputTimes);
-    } else if (keyCode === "ArrowUp") {
+    } else if (keyCode === 'ArrowUp') {
       // ----------- previous history command -----------
       if (this.history.length > 0) {
         if (this.curHistory > 0) this.curHistory--;
         const historyCommand = this.history[this.curHistory];
         inputElement.value = historyCommand;
       }
-    } else if (keyCode === "ArrowDown") {
+    } else if (keyCode === 'ArrowDown') {
       // ----------- next history command -----------
       if (this.history.length > 0) {
         if (this.curHistory < this.history.length) this.curHistory++;
-        if (this.curHistory === this.history.length) inputElement.value = "";
+        if (this.curHistory === this.history.length) inputElement.value = '';
         else {
           const historyCommand = this.history[this.curHistory];
           inputElement.value = historyCommand;
         }
       }
-    } else if (keyCode === "Tab") {
+    } else if (keyCode === 'Tab') {
       // ----------- auto complete -----------
       inputElement.value = this.autoComplete(inputText);
       // prevent tab outside the terminal
@@ -354,7 +354,7 @@ export default class Terminal extends Component<{}, TerminalState> {
           <span className="text-yellow-200">
             zou@macbook-pro <span className="text-green-300">{this.getCurDirName()}</span>
           </span>
-          <span className="ml-1.5 text-red-400">{">"}</span>
+          <span className="ml-1.5 text-red-400">{'>'}</span>
         </div>
         <input
           id={`terminal-input-${id}`}

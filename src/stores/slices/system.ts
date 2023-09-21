@@ -1,5 +1,5 @@
-import { StateCreator } from "zustand";
-import { enterFullScreen, exitFullScreen } from "~/utils";
+import { StateCreator } from 'zustand';
+import { enterFullScreen, exitFullScreen } from '~/utils';
 
 export interface SystemSlice {
   dark: boolean;
@@ -28,8 +28,8 @@ export const createSystemSlice: StateCreator<SystemSlice> = (set) => ({
   fullscreen: false,
   toggleDark: () =>
     set((state) => {
-      if (!state.dark) document.documentElement.classList.add("dark");
-      else document.documentElement.classList.remove("dark");
+      if (!state.dark) document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
       return { dark: !state.dark };
     }),
   toggleWIFI: () => set((state) => ({ wifi: !state.wifi })),
